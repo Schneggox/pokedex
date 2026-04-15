@@ -1,0 +1,77 @@
+/* Mobile-Basis (ab 320px) */
+@media screen and (max-width: 479px) {
+  header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .search-bar input {
+    flex: 1;
+    width: auto;
+  }
+
+  .pokemon-card {
+    width: calc(50% - 8px);
+  }
+
+  .overlay-card {
+    width: 90%;
+  }
+
+  .nav-left {
+    left: 4px;
+  }
+
+  .nav-right {
+    right: 4px;
+  }
+
+  .overlay-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .pokemon-card {
+    width: calc(33.33% - 12px);
+  }
+
+  .overlay-card {
+    width: 380px;
+  }
+
+  .nav-left {
+    left: -60px;
+  }
+
+  .nav-right {
+    right: -60px;
+  }
+}
+
+/* Tablet-Querformat */
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .pokemon-card {
+    width: 200px;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1280px) {
+  .pokemon-card {
+    width: 210px;
+  }
+
+  main {
+    padding: 40px 32px;
+  }
+}
