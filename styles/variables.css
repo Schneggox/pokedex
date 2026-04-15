@@ -1,0 +1,14 @@
+:root {
+  --bg-color: #f0f0f0;
+  --text-color: #333;
+  --header-bg: #dc3545;
+  --header-text: #fff;
+  --card-radius: 16px;
+  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --card-shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.25);
+  --btn-bg: #dc3545;
+  --btn-text: #fff;
+  --btn-hover: #b02a37;
+  --overlay-bg: rgba(0, 0, 0, 0.6);
+  --stat-bar-bg: #e0e0e0;
+}
