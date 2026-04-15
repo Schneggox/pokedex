@@ -145,6 +145,11 @@ body.no-scroll {
   right: -70px;
 }
 
+/* Mobile Pfeile (unter der Karte) — standardmaessig versteckt */
+.overlay-arrows {
+  display: none;
+}
+
 /* Overlay-Wrapper fuer Pfeil-Positionierung */
 .overlay-inner {
   position: relative;

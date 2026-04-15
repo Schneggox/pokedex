@@ -23,19 +23,27 @@
     width: 90%;
   }
 
-  .nav-left {
-    left: 4px;
+  .overlay-inner {
+    flex-direction: column;
   }
 
-  .nav-right {
-    right: 4px;
+  .overlay-inner > .overlay-nav {
+    display: none;
   }
 
-  .overlay-nav {
-    width: 36px;
-    height: 36px;
+  .overlay-arrows {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 16px;
+  }
+
+  .overlay-arrows .overlay-nav {
+    position: static;
+    transform: none;
+    width: 44px;
+    height: 44px;
     font-size: 24px;
-    background-color: rgba(0, 0, 0, 0.5);
   }
 }
 

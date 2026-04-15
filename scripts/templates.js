@@ -37,6 +37,10 @@ function pokemonDetailTemplate(pokemon, index) {
         </div>
       </div>
       ${nextBtn}
+      <div class="overlay-arrows">
+        ${prevBtn}
+        ${nextBtn}
+      </div>
     </div>`;
 }
 
