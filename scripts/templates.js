@@ -57,7 +57,8 @@ function getStatsHtml(pokemon) {
     let stat = pokemon.stats[i];
     let name = formatStatName(stat.stat.name);
     let value = stat.base_stat;
-    let percent = Math.min((value / 255) * 100, 100);
+    let percent = (value / 255) * 100;
+    if (percent > 100) percent = 100;
     let color = getStatBarColor(value);
     html += statRowTemplate(name, value, percent, color);
   }
