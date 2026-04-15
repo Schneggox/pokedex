@@ -119,30 +119,48 @@ body.no-scroll {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 40px;
-  color: #fff;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.3);
-  transition: background-color 0.25s;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  transition: background-color 0.25s, border-color 0.25s;
   z-index: 101;
 }
 
 .overlay-nav:hover {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(255, 255, 255, 0.35);
+  border-color: #fff;
+}
+
+.arrow {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+}
+
+.arrow-left {
+  transform: rotate(-135deg);
+  margin-left: 4px;
+}
+
+.arrow-right {
+  transform: rotate(45deg);
+  margin-right: 4px;
 }
 
 .nav-left {
-  left: -70px;
+  left: -64px;
 }
 
 .nav-right {
-  right: -70px;
+  right: -64px;
 }
 
 /* Mobile Pfeile (unter der Karte) — standardmaessig versteckt */

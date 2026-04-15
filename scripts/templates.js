@@ -99,14 +99,14 @@ function statRowTemplate(name, value, percent, color) {
 
 
 function getPrevButton(index) {
-  if (index <= 0) return '<div class="overlay-nav nav-left" style="visibility:hidden;">&#8592;</div>';
-  return `<div class="overlay-nav nav-left" onclick="navigateOverlay(-1)">&#8592;</div>`;
+  if (index <= 0) return '<div class="overlay-nav nav-left" style="visibility:hidden;"><span class="arrow arrow-left"></span></div>';
+  return `<div class="overlay-nav nav-left" onclick="navigateOverlay(-1)"><span class="arrow arrow-left"></span></div>`;
 }
 
 
 function getNextButton(index) {
-  if (index >= currentPokemon.length - 1) return '<div class="overlay-nav nav-right" style="visibility:hidden;">&#8594;</div>';
-  return `<div class="overlay-nav nav-right" onclick="navigateOverlay(1)">&#8594;</div>`;
+  if (index >= currentPokemon.length - 1) return '<div class="overlay-nav nav-right" style="visibility:hidden;"><span class="arrow arrow-right"></span></div>';
+  return `<div class="overlay-nav nav-right" onclick="navigateOverlay(1)"><span class="arrow arrow-right"></span></div>`;
 }
 
 
