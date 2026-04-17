@@ -68,6 +68,12 @@
     padding: 16px 12px;
   }
 
+  .footer-content {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
   .overlay-card {
     width: 90%;
   }
@@ -113,6 +119,17 @@
 
   .pokemon-card {
     width: calc(33.33% - 12px);
+    overflow: hidden;
+  }
+
+  .pokemon-card .card-types {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .type-badge {
+    padding: 2px 8px;
   }
 
   .overlay-card {
