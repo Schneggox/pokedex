@@ -60,6 +60,7 @@ async function fetchPokemonDetails(url) {
 }
 
 
+/* Rendert die komplette Pokemon-Liste (fuer initiales Laden und Suche) */
 function renderPokemonList() {
   let container = document.getElementById('pokemon-container');
   container.innerHTML = '';
@@ -69,15 +70,28 @@ function renderPokemonList() {
 }
 
 
-function showLoadingState() {
+/* Haengt nur neue Karten an, ohne bestehende zu ueberschreiben */
+function appendPokemonCards(pokemonList, startIndex) {
   let container = document.getElementById('pokemon-container');
-  container.innerHTML += loadingSpinnerTemplate();
+  let newCardsHtml = '';
+  for (let i = 0; i < pokemonList.length; i++) {
+    newCardsHtml += pokemonCardTemplate(pokemonList[i], startIndex + i);
+  }
+  container.innerHTML += newCardsHtml;
+}
+
+
+function showLoadingState() {
+  let spinner = document.getElementById('loading-spinner');
+  spinner.classList.remove('d-none');
   let btn = document.getElementById('load-more-btn');
   btn.disabled = true;
 }
 
 
 function hideLoadingState() {
+  let spinner = document.getElementById('loading-spinner');
+  spinner.classList.add('d-none');
   let btn = document.getElementById('load-more-btn');
   btn.disabled = false;
 }
@@ -147,6 +161,73 @@ function resetSearch() {
 }
 
 
+/* Laedt nur neue Pokemon nach und haengt sie an (ohne bestehende neu zu rendern) */
 async function loadMore() {
-  await loadPokemon();
+  showLoadingState();
+  try {
+    let pokemonList = await fetchPokemonList();
+    let startIndex = allPokemon.length;
+    await loadPokemonDetails(pokemonList);
+    let newPokemon = allPokemon.slice(startIndex);
+    currentPokemon = allPokemon.slice();
+    appendPokemonCards(newPokemon, startIndex);
+  } catch (error) {
+    console.error('Error loading Pokemon:', error);
+  }
+  hideLoadingState();
+}
+
+
+/* Hilfsfunktionen fuer die Datenaufbereitung vor den Templates */
+
+function getTypeBadgesHtml(pokemon) {
+  let badges = '';
+  for (let i = 0; i < pokemon.types.length; i++) {
+    let typeName = pokemon.types[i].type.name;
+    badges += `<span class="type-badge bg-${typeName}">${typeName}</span>`;
+  }
+  return badges;
+}
+
+
+function getStatsHtml(pokemon) {
+  let html = '';
+  for (let i = 0; i < pokemon.stats.length; i++) {
+    let stat = pokemon.stats[i];
+    let name = formatStatName(stat.stat.name);
+    let value = stat.base_stat;
+    let percent = (value / 255) * 100;
+    if (percent > 100) percent = 100;
+    let color = getStatBarColor(value);
+    html += statRowTemplate(name, value, percent, color);
+  }
+  return html;
+}
+
+
+function formatStatName(name) {
+  if (name === 'hp') return 'HP';
+  if (name === 'special-attack') return 'Sp. Atk';
+  if (name === 'special-defense') return 'Sp. Def';
+  return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+
+function getStatBarColor(value) {
+  if (value < 50) return '#EE8130';
+  if (value < 80) return '#F7D02C';
+  if (value < 120) return '#7AC74C';
+  return '#6390F0';
+}
+
+
+function getPrevButton(index) {
+  if (index <= 0) return '<div class="overlay-nav nav-left" style="visibility:hidden;"><span class="arrow arrow-left"></span></div>';
+  return `<div class="overlay-nav nav-left" onclick="navigateOverlay(-1)"><span class="arrow arrow-left"></span></div>`;
+}
+
+
+function getNextButton(index) {
+  if (index >= currentPokemon.length - 1) return '<div class="overlay-nav nav-right" style="visibility:hidden;"><span class="arrow arrow-right"></span></div>';
+  return `<div class="overlay-nav nav-right" onclick="navigateOverlay(1)"><span class="arrow arrow-right"></span></div>`;
 }

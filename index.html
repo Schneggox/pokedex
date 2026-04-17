@@ -5,36 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pokedex</title>
   <link rel="icon" href="./assets/icons/pokeball.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles/standard.css">
-  <link rel="stylesheet" href="./styles/variables.css">
+  <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./styles/colors.css">
-  <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="./styles/overlay.css">
   <link rel="stylesheet" href="./styles/responsive.css">
 </head>
+
 <body onload="init()">
 
   <header>
-    <div class="header-left">
-      <img src="./assets/icons/pokeball.svg" alt="Pokeball Logo">
-      <h1>Pokedex</h1>
-    </div>
-    <div class="search-bar">
-      <input id="search-input" type="text" placeholder="Search Pokemon..." oninput="handleSearchInput()" onkeydown="if(event.key === 'Enter') searchPokemon()">
-      <button id="search-btn" onclick="searchPokemon()" disabled>Search</button>
+    <div class="header-content">
+      <div class="header-left">
+        <img src="./assets/icons/pokeball.svg" alt="Pokeball Logo">
+        <h1>Pokedex</h1>
+      </div>
+      <div class="search-bar">
+        <input id="search-input" type="text" placeholder="Search Pokemon..." oninput="handleSearchInput()" onkeydown="if(event.key === 'Enter') searchPokemon()">
+        <button id="search-btn" onclick="searchPokemon()" disabled>Search</button>
+      </div>
     </div>
   </header>
 
   <main>
     <div id="pokemon-container"></div>
+    <div id="loading-spinner" class="loading-spinner d-none"><div class="spinner"></div></div>
     <div class="load-more-wrapper">
       <button id="load-more-btn" onclick="loadMore()">Load More</button>
     </div>
   </main>
 
+  <footer>
+    <div class="footer-content">
+      Pokedex &mdash; Powered by PokeAPI
+    </div>
+  </footer>
+
   <div id="overlay" class="overlay d-none" onclick="closeOverlay(event)"></div>
 
-  <script src="./scripts/templates.js"></script>
-  <script src="./scripts/script.js"></script>
+  <script src="./templates.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>

@@ -1,15 +1,60 @@
-/* Header */
+/* ========== Reset & Grundlagen ========== */
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.d-none {
+  display: none !important;
+}
+
+/* ========== CSS-Variablen ========== */
+:root {
+  --bg-color: #f0f0f0;
+  --text-color: #333;
+  --header-bg: #dc3545;
+  --header-text: #fff;
+  --card-radius: 16px;
+  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --card-shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.25);
+  --btn-bg: #dc3545;
+  --btn-text: #fff;
+  --btn-hover: #b02a37;
+  --overlay-bg: rgba(0, 0, 0, 0.6);
+  --stat-bar-bg: #e0e0e0;
+}
+
+/* ========== Header ========== */
 header {
   background-color: var(--header-bg);
   color: var(--header-text);
   padding: 16px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   position: sticky;
   top: 0;
   z-index: 50;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Header-Inhalt mit Contentbegrenzung */
+.header-content {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header-left {
@@ -38,7 +83,7 @@ header {
   padding: 8px 16px;
   border: none;
   border-radius: 24px;
-  font-size: 14px;
+  font-size: 16px;
   width: 220px;
   outline: none;
 }
@@ -49,7 +94,7 @@ header {
   border-radius: 24px;
   background-color: #fff;
   color: var(--header-bg);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.25s, color 0.25s;
@@ -65,11 +110,13 @@ header {
   cursor: not-allowed;
 }
 
-/* Main */
+/* ========== Main ========== */
 main {
   max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
   padding: 32px 16px;
+  flex: 1;
 }
 
 /* Pokemon-Container */
@@ -104,7 +151,7 @@ main {
   position: absolute;
   top: 8px;
   right: 12px;
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.7;
   font-weight: 600;
 }
@@ -187,4 +234,19 @@ main {
   color: #888;
   padding: 40px;
   width: 100%;
+}
+
+/* ========== Footer ========== */
+footer {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  padding: 20px 24px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.footer-content {
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 16px;
 }
