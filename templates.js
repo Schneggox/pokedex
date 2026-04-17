@@ -13,32 +13,40 @@ function pokemonCardTemplate(pokemon, index) {
 
 
 function pokemonDetailTemplate(pokemon, index) {
-  let mainType = pokemon.types[0].type.name;
-  let typeBadges = getTypeBadgesHtml(pokemon);
-  let statsHtml = getStatsHtml(pokemon);
   let prevBtn = getPrevButton(index);
   let nextBtn = getNextButton(index);
-  let imgSrc = pokemon.sprites.other['official-artwork'].front_default;
+  let topHtml = overlayTopTemplate(pokemon);
+  let bottomHtml = overlayBottomTemplate(pokemon);
   return `
     <div class="overlay-inner">
       ${prevBtn}
-      <div class="overlay-card">
-        <div class="overlay-top bg-${mainType}">
-          <span class="overlay-id">#${pokemon.id}</span>
-          <span class="overlay-name">${pokemon.name}</span>
-          <div class="overlay-types">${typeBadges}</div>
-          <img class="overlay-img" src="${imgSrc}" alt="${pokemon.name}">
-        </div>
-        <div class="overlay-bottom">
-          <h3>Base Stats</h3>
-          ${statsHtml}
-        </div>
-      </div>
+      <div class="overlay-card">${topHtml}${bottomHtml}</div>
       ${nextBtn}
-      <div class="overlay-arrows">
-        ${prevBtn}
-        ${nextBtn}
-      </div>
+      <div class="overlay-arrows">${prevBtn}${nextBtn}</div>
+    </div>`;
+}
+
+
+function overlayTopTemplate(pokemon) {
+  let mainType = pokemon.types[0].type.name;
+  let typeBadges = getTypeBadgesHtml(pokemon);
+  let imgSrc = pokemon.sprites.other['official-artwork'].front_default;
+  return `
+    <div class="overlay-top bg-${mainType}">
+      <span class="overlay-id">#${pokemon.id}</span>
+      <span class="overlay-name">${pokemon.name}</span>
+      <div class="overlay-types">${typeBadges}</div>
+      <img class="overlay-img" src="${imgSrc}" alt="${pokemon.name}">
+    </div>`;
+}
+
+
+function overlayBottomTemplate(pokemon) {
+  let statsHtml = getStatsHtml(pokemon);
+  return `
+    <div class="overlay-bottom">
+      <h3>Base Stats</h3>
+      ${statsHtml}
     </div>`;
 }
 
