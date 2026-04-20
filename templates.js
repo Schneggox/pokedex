@@ -1,22 +1,15 @@
-function pokemonCardTemplate(pokemon, index) {
-  let mainType = pokemon.types[0].type.name;
-  let typeBadges = getTypeBadgesHtml(pokemon);
-  let imgSrc = pokemon.sprites.other['official-artwork'].front_default;
+function pokemonCardTemplate(id, name, mainType, typeBadges, imgSrc, index) {
   return `
     <div class="pokemon-card bg-${mainType}" onclick="openOverlay(${index})">
-      <span class="card-id">#${pokemon.id}</span>
-      <span class="card-name">${pokemon.name}</span>
+      <span class="card-id">#${id}</span>
+      <span class="card-name">${name}</span>
       <div class="card-types">${typeBadges}</div>
-      <img class="card-img" src="${imgSrc}" alt="${pokemon.name}">
+      <img class="card-img" src="${imgSrc}" alt="${name}">
     </div>`;
 }
 
 
-function pokemonDetailTemplate(pokemon, index) {
-  let prevBtn = getPrevButton(index);
-  let nextBtn = getNextButton(index);
-  let topHtml = overlayTopTemplate(pokemon);
-  let bottomHtml = overlayBottomTemplate(pokemon);
+function pokemonDetailTemplate(prevBtn, nextBtn, topHtml, bottomHtml) {
   return `
     <div class="overlay-inner">
       ${prevBtn}
@@ -27,22 +20,18 @@ function pokemonDetailTemplate(pokemon, index) {
 }
 
 
-function overlayTopTemplate(pokemon) {
-  let mainType = pokemon.types[0].type.name;
-  let typeBadges = getTypeBadgesHtml(pokemon);
-  let imgSrc = pokemon.sprites.other['official-artwork'].front_default;
+function overlayTopTemplate(id, name, mainType, typeBadges, imgSrc) {
   return `
     <div class="overlay-top bg-${mainType}">
-      <span class="overlay-id">#${pokemon.id}</span>
-      <span class="overlay-name">${pokemon.name}</span>
+      <span class="overlay-id">#${id}</span>
+      <span class="overlay-name">${name}</span>
       <div class="overlay-types">${typeBadges}</div>
-      <img class="overlay-img" src="${imgSrc}" alt="${pokemon.name}">
+      <img class="overlay-img" src="${imgSrc}" alt="${name}">
     </div>`;
 }
 
 
-function overlayBottomTemplate(pokemon) {
-  let statsHtml = getStatsHtml(pokemon);
+function overlayBottomTemplate(statsHtml) {
   return `
     <div class="overlay-bottom">
       <h3>Base Stats</h3>

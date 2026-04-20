@@ -60,24 +60,22 @@ async function fetchPokemonDetails(url) {
 }
 
 
-/* Rendert die komplette Pokemon-Liste (fuer initiales Laden und Suche) */
 function renderPokemonList() {
   let container = document.getElementById('pokemon-container');
   container.innerHTML = '';
   for (let i = 0; i < currentPokemon.length; i++) {
-    container.innerHTML += pokemonCardTemplate(currentPokemon[i], i);
+    container.innerHTML += buildPokemonCard(currentPokemon[i], i);
   }
 }
 
 
-/* Haengt nur neue Karten an, ohne bestehende zu ueberschreiben */
 function appendPokemonCards(pokemonList, startIndex) {
   let container = document.getElementById('pokemon-container');
   let newCardsHtml = '';
   for (let i = 0; i < pokemonList.length; i++) {
-    newCardsHtml += pokemonCardTemplate(pokemonList[i], startIndex + i);
+    newCardsHtml += buildPokemonCard(pokemonList[i], startIndex + i);
   }
-  container.innerHTML += newCardsHtml;
+  container.insertAdjacentHTML('beforeend', newCardsHtml);
 }
 
 
@@ -101,7 +99,7 @@ function openOverlay(index) {
   currentOverlayIndex = index;
   let overlay = document.getElementById('overlay');
   let pokemon = currentPokemon[index];
-  overlay.innerHTML = pokemonDetailTemplate(pokemon, index);
+  overlay.innerHTML = buildPokemonDetail(pokemon, index);
   overlay.classList.remove('d-none');
   document.body.classList.add('no-scroll');
 }
@@ -161,7 +159,6 @@ function resetSearch() {
 }
 
 
-/* Laedt nur neue Pokemon nach und haengt sie an (ohne bestehende neu zu rendern) */
 async function loadMore() {
   showLoadingState();
   try {
@@ -178,7 +175,36 @@ async function loadMore() {
 }
 
 
-/* Hilfsfunktionen fuer die Datenaufbereitung vor den Templates */
+function buildPokemonCard(pokemon, index) {
+  let mainType = pokemon.types[0].type.name;
+  let typeBadges = getTypeBadgesHtml(pokemon);
+  let imgSrc = pokemon.sprites.other['official-artwork'].front_default;
+  return pokemonCardTemplate(pokemon.id, pokemon.name, mainType, typeBadges, imgSrc, index);
+}
+
+
+function buildPokemonDetail(pokemon, index) {
+  let prevBtn = getPrevButton(index);
+  let nextBtn = getNextButton(index);
+  let topHtml = buildOverlayTop(pokemon);
+  let bottomHtml = buildOverlayBottom(pokemon);
+  return pokemonDetailTemplate(prevBtn, nextBtn, topHtml, bottomHtml);
+}
+
+
+function buildOverlayTop(pokemon) {
+  let mainType = pokemon.types[0].type.name;
+  let typeBadges = getTypeBadgesHtml(pokemon);
+  let imgSrc = pokemon.sprites.other['official-artwork'].front_default;
+  return overlayTopTemplate(pokemon.id, pokemon.name, mainType, typeBadges, imgSrc);
+}
+
+
+function buildOverlayBottom(pokemon) {
+  let statsHtml = getStatsHtml(pokemon);
+  return overlayBottomTemplate(statsHtml);
+}
+
 
 function getTypeBadgesHtml(pokemon) {
   let badges = '';
